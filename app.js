@@ -1,25 +1,49 @@
 //O principal objetivo deste desafio é fortalecer suas habilidades em lógica de programação. Aqui você deverá desenvolver a lógica para resolver o problema.
 
 let amigos = [];
+let sorteado = null;
 
 function adicionarAmigo() {
-  let nome = document.getElementById('amigo').value;
-  if (nome != '') {
+  let nome = document.getElementById("amigo").value;
+  if (nome != "") {
     amigos.push(nome);
-    document.getElementById('amigo').value = '';
-    listarAmigos();
+    document.getElementById("amigo").value = "";
+    
+    atualizarConteudoNaLista("resultado", "");
+    atualizarConteudoNaLista("listaAmigos", null, amigos);
   } else {
-    alert('Por favor, insira um nome válido.');
+    alert("Por favor, insira um nome válido.");
   }
 }
 
-function listarAmigos() {
-  let lista = document.getElementById('listaAmigos');
-  lista.innerHTML = ''; // Limpa a lista antes de adicionar novos amigos
-  amigos.forEach(function(amigoNome) {
-    let item = document.createElement('li');
-    item.innerHTML = amigoNome;
-    console.log(`Adicionando amigo ${amigoNome} à lista.`);
-    lista.appendChild(item);
-  });
+function sortearAmigo() {
+  if (amigos.length == 0) {
+    alert("Nenhum amigo cadastrado para sortear.");
+    return;
+  }
+
+  let posicaoAmigoSorteado = parseInt(Math.random() * amigos.length);
+  sorteado = amigos[posicaoAmigoSorteado];
+
+  atualizarConteudoNaLista("resultado", "Amigo sorteado: " + sorteado);
+}
+
+function atualizarConteudoNaLista(listaId, conteudo, listaDeItems) {
+  let elemento = document.getElementById(listaId);
+  elemento.innerHTML = "";
+
+  if (listaDeItems != null && listaDeItems.length > 0) {
+    listaDeItems.forEach(function (item) {
+      let li = document.createElement("li");
+      li.innerHTML = item;
+      elemento.appendChild(li);
+    });
+    return;
+  } else if (conteudo != null) {
+    let item = document.createElement("li");
+    item.innerHTML = conteudo;
+    elemento.appendChild(item);
+  } else {
+    alert("Nenhum item para exibir.");
+  }
 }
