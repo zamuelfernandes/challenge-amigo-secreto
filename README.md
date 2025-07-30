@@ -31,7 +31,7 @@ Ao clicar no botão **"Sortear Amigo"**, um nome da lista será selecionado alea
 * CSS3
 * JavaScript
 
-## 📸 Demonstração (opcional)
+## 📸 Demonstração
 
 Vercel URL: [Amigo Secreto App](https://challenge-amigo-secreto-beta-mocha.vercel.app/)
 
