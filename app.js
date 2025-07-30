@@ -3,12 +3,20 @@
 let amigos = [];
 let sorteado = null;
 
+const input = document.getElementById("amigo");
+input.addEventListener("keydown", function (event) {
+  if (event.key === "Enter") {
+    event.preventDefault(); 
+    adicionarAmigo();
+  }
+});
+
 function adicionarAmigo() {
   let nome = document.getElementById("amigo").value;
   if (nome != "") {
     amigos.push(nome);
     document.getElementById("amigo").value = "";
-    
+
     atualizarConteudoNaLista("resultado", "");
     atualizarConteudoNaLista("listaAmigos", null, amigos);
   } else {
